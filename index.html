@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Meteo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      padding: 20px;
+      background-color: #f0f8ff;
+      color: #333;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .dato {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dashboard Meteo</h1>
+  <div class="dato"><b>Temperatura:</b> <span id="temp">--</span> °C</div>
+  <div class="dato"><b>Umidità:</b> <span id="hum">--</span> %</div>
+  <div class="dato"><b>Pressione:</b> <span id="pres">--</span> hPa</div>
+  <div class="dato"><b>Ultimo aggiornamento:</b> <span id="time">--</span></div>
+
+  <script>
+    async function aggiornaDati() {
+      // Esempio: recupera dati da ThingSpeak o altro servizio
+      // Qui metteremo il link reale appena scegli dove inviare i dati
+      const response = await fetch('https://api.example.com/meteo');
+      const data = await response.json();
+
+      document.getElementById('temp').textContent = data.temperatura;
+      document.getElementById('hum').textContent = data.umidita;
+      document.getElementById('pres').textContent = data.pressione;
+      document.getElementById('time').textContent = data.timestamp;
+    }
+
+    aggiornaDati();
+    setInterval(aggiornaDati, 30000); // ogni 30 secondi
+  </script>
+</body>
+</html>
